@@ -2,7 +2,6 @@
 # Though he uses pytorch this is solely built on numpy as external module
 import numpy as np
 
-
 # -----------------------------------------------------------------------------------------------
 class Linear:
 
@@ -173,97 +172,93 @@ class Sequential:
             gradients.append(layer.gradd["weight"])
     return d, list(reversed(gradients))
   
-
-  # -----------------------------------------------------------------------------------------------
-
-  class Optimizer():
-    def __init__(self, lr=0.001, optimizer="sgd", momentum=0.9,
-                 epsilon=1e-8, beta=0.9, beta1=0.9, beta2=0.999, t=0, decay=0):
-      self.lr = lr
-      self.optimizer = optimizer
-      self.momentum = momentum
-      self.epsilon = epsilon
-      self.beta = beta
-      self.beta1 = beta1
-      self.beta2 = beta2
-      self.t = t
-      self.decay = decay
+class Optimizer():
+  def __init__(self, lr=0.001, optimizer="sgd", momentum=0.9,
+                epsilon=1e-8, beta=0.9, beta1=0.9, beta2=0.999, t=0, decay=0):
+    self.lr = lr
+    self.optimizer = optimizer
+    self.momentum = momentum
+    self.epsilon = epsilon
+    self.beta = beta
+    self.beta1 = beta1
+    self.beta2 = beta2
+    self.t = t
+    self.decay = decay
 
 
-    def __call__(self, param, dparam):
-      self.t+=1
-      self.run(param, dparam)
 
-    def __str__(self):
-        return f"Optimizer->{self.optimizer} | lr->{self.lr}"
-       
+  def __call__(self, param, dparam):
+    self.t+=1
+    self.run(param, dparam)
 
-    def run(self, param, dparam):
-        if(self.optimizer == "sgd"):
-            self.SGD(param, dparam)
-        elif(self.optimizer == "momentum"):
-            self.MomentumGD(param, dparam)
-        elif(self.optimizer == "nag"):
-            self.NAG(param, dparam)
-        elif(self.optimizer == "rmsprop"):
-            self.RMSProp(param, dparam)
-        elif(self.optimizer == "adam"):
-            self.Adam(param, dparam)
-        elif (self.optimizer == "nadam"):
-            self.NAdam(param, dparam)
-        else:
-            raise Exception("Invalid optimizer")
+  def run(self, param, dparam):
+      if(self.optimizer == "sgd"):
+          self.SGD(param, dparam)
+      elif(self.optimizer == "momentum"):
+          self.MomentumGD(param, dparam)
+      elif(self.optimizer == "nag"):
+          self.NAG(param, dparam)
+      elif(self.optimizer == "rmsprop"):
+          self.RMSProp(param, dparam)
+      elif(self.optimizer == "adam"):
+          self.Adam(param, dparam)
+      elif (self.optimizer == "nadam"):
+          self.NAdam(param, dparam)
+      else:
+          raise Exception("Invalid optimizer")
 
-    def SGD(self, param, dparam):
-        clip_value = 1
-        for p, grad in zip(param, dparam):
-            clipped_dparam = np.clip(grad, -clip_value, clip_value)
-            p -= self.lr * clipped_dparam #grad
+  def SGD(self, param, dparam):
+      clip_value = 1e-2
+      for p, grad in zip(param, dparam):
+          clipped_dparam = np.clip(grad, -clip_value, clip_value)
+          p -= self.lr * clipped_dparam #grad
 
-    def MomentumGD(self, param, dparam):
-        clip_value = 1
-        velocity = [np.zeros_like(p) for p in param]
-        for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
-            clipped_dparam = np.clip(grad, -clip_value, clip_value)
-            u = self.momentum * u + 0.1 * clipped_dparam
-            param -= self.lr * u     #clipped_dparam #grad
+  def MomentumGD(self, param, dparam):
+      clip_value = 1e-3
+      velocity = [np.zeros_like(p) for p in param]
+      for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
+          clipped_dparam = np.clip(grad, -clip_value, clip_value)
+          u = self.momentum * u + 0.1 * clipped_dparam
+          param -= self.lr * u     #clipped_dparam #grad
 
-    def NAG(self, param, dparam):
-        clip_value = 1
-        velocity = [np.zeros_like(p) for p in param]
-        for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
-            clipped_dparam = np.clip(grad, -clip_value, clip_value)
-            u = self.momentum * u + 0.1 * clipped_dparam
-            param -= self.lr * u + clipped_dparam    #clipped_dparam #grad
+  def NAG(self, param, dparam):
+      clip_value = 1e-3
+      velocity = [np.zeros_like(p) for p in param]
+      for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
+          clipped_dparam = np.clip(grad, -clip_value, clip_value)
+          u = self.momentum * u + 0.1 * clipped_dparam
+          param -= self.lr * u + clipped_dparam    #clipped_dparam #grad
 
-    def RMSProp(self, param, dparam ):
-        velocity = [np.zeros_like(p) for p in param]
-        for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
-            u = self.beta * u + (1 - self.beta) * (grad**2)
-            param -= (self.lr / (np.sqrt(u + self.epsilon)))
+  def RMSProp(self, param, dparam ):
+    clip_value = 1e-3
+    velocity = [np.zeros_like(p) for p in param]
+    for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
+        clipped_grad = np.clip(grad, -clip_value, clip_value)
+        u = self.beta * u + (1 - self.beta) * (clipped_grad**2)
+        param -= ((self.lr * clipped_grad) / (np.sqrt(u + self.epsilon)))
 
-    def Adam(self, param, dparam):
-        moments = [np.zeros_like(p) for p in param]
-        velocity = [np.zeros_like(p) for p in param]
-        for i, (m, v, param, grad) in enumerate(zip(moments, velocity, param, dparam)):
-            m = self.beta1 * m + (1 - self.beta1) * grad
-            m_hat = m/(1-self.beta1)
+  def Adam(self, param, dparam):
+      moments = [np.zeros_like(p) for p in param]
+      velocity = [np.zeros_like(p) for p in param]
+      for i, (m, v, param, grad) in enumerate(zip(moments, velocity, param, dparam)):
+          m = self.beta1 * m + (1 - self.beta1) * grad
+          m_hat = m/(1-self.beta1)
 
-            v = self.beta1 * v + (1 - self.beta2) * (grad**2)
-            v_hat = v/(1-self.beta2)
+          v = self.beta1 * v + (1 - self.beta2) * (grad**2)
+          v_hat = v/(1-self.beta2)
 
-            param -= ((self.lr * m_hat) / (np.sqrt(v_hat + self.epsilon)))
+          param -= ((self.lr * m_hat) / (np.sqrt(v_hat + self.epsilon)))
 
 
-    def NAdam(self, param, dparam, epoch):
-        i = epoch
-        moments = [np.zeros_like(p) for p in param]
-        velocity = [np.zeros_like(p) for p in param]
-        for i, (m, v, param, grad) in enumerate(zip(moments, velocity, param, dparam)):
-            m = self.beta1 * m + (1 - self.beta1) * grad
-            m_hat = m/(1-self.beta1**(i+1))
+  def NAdam(self, param, dparam, epoch):
+      i = epoch
+      moments = [np.zeros_like(p) for p in param]
+      velocity = [np.zeros_like(p) for p in param]
+      for i, (m, v, param, grad) in enumerate(zip(moments, velocity, param, dparam)):
+          m = self.beta1 * m + (1 - self.beta1) * grad
+          m_hat = m/(1-self.beta1**(i+1))
 
-            v = self.beta1 * v + (1 - self.beta2) * (grad**2)
-            v_hat = v/(1-self.beta2**(i+1))
+          v = self.beta1 * v + (1 - self.beta2) * (grad**2)
+          v_hat = v/(1-self.beta2**(i+1))
 
-            param -= (self.lr  / (np.sqrt(v_hat + self.epsilon))) * (self.beta1*m_hat + (1-self.beta1)*grad/(1-self.beta1**(i+1)))
+          param -= (self.lr  / (np.sqrt(v_hat + self.epsilon))) * (self.beta1*m_hat + (1-self.beta1)*grad/(1-self.beta1**(i+1)))
