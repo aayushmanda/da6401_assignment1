@@ -175,7 +175,7 @@ class Sequential:
   
 
   # -----------------------------------------------------------------------------------------------
-  
+
   class Optimizer():
     def __init__(self, lr=0.001, optimizer="sgd", momentum=0.9,
                  epsilon=1e-8, beta=0.9, beta1=0.9, beta2=0.999, t=0, decay=0):
@@ -190,10 +190,13 @@ class Sequential:
       self.decay = decay
 
 
-
     def __call__(self, param, dparam):
       self.t+=1
       self.run(param, dparam)
+
+    def __str__(self):
+        return f"Optimizer->{self.optimizer} | lr->{self.lr}"
+       
 
     def run(self, param, dparam):
         if(self.optimizer == "sgd"):
