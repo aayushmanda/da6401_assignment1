@@ -1,5 +1,7 @@
 # Acknowledgement: This is inspired from Andrej Karpathy makemore: https://github.com/karpathy/nn-zero-to-hero/blob/master/lectures/makemore/makemore_part5_cnn1.ipynb
 # Though he uses pytorch this is solely built on numpy as external module
+import numpy as np
+
 
 # -----------------------------------------------------------------------------------------------
 class Linear:
@@ -9,10 +11,9 @@ class Linear:
     self.cache = dict(x=None)
     self.gradd = dict(weight=None, bias=None)
     if weight_init == "Xavier":
-
       #XavierInit
       self.weight = np.random.randn(fan_in, fan_out) / (fan_in + fan_out)**0.5
-      self.bias = np.zeros_like(fan_out) if bias else None
+      self.bias = np.zeros(fan_out, dtype="f") if bias else None
     else:
       #RandomInit
       self.weight = np.random.randn(fan_in, fan_out)
@@ -54,7 +55,8 @@ class Linear:
 class Tanh:
   def __call__(self, x):
     self.x = x
-    self.cache = {"x": np.tanh(self.x)}
+    self.out = np.tanh(self.x)
+    # self.cache = {"x": np.tanh(self.x)}
     return self.out
   def parameters(self):
     # Activation Function
@@ -73,7 +75,7 @@ class Sigmoid:
 
   def grad(self, d_out):
       # sigmoid derivative: σ(x)(1 - σ(x))
-      return d_out * (self.out * (1 - self.out))
+      return (self.out * (1 - self.out)) * d_out
 
   def parameters(self):
       return []
@@ -102,17 +104,6 @@ class Relu:
 # -----------------------------------------------------------------------------------------------
 
 class CrossEntropyLoss:
-    """Cross Entropy Loss function for C class classification.
-
-        Shapes
-        ------
-        Input:
-            (N, C) where N is batch size and C is number of classes.
-        Target:
-            (N, C) where each row is a one-hot encoded vector
-        Output: float
-            Scalar loss.
-    """
 
     def __init__(self, reduction='mean', eps=1e-12):  # More stable epsilon
         super().__init__()
@@ -122,10 +113,10 @@ class CrossEntropyLoss:
     def __str__(self):
         return f'CrossEntropyLoss(reduction={self.reduction}, eps={self.eps})'
 
-    def __call__(self, y, t):
-        return self.forward(y, t)
+    def __call__(self, y, y_true):
+        return self.forward(y, y_true)
 
-    def forward(self, y, t):
+    def forward(self, y, y_true):
         # Final layer activation is softmax and y here is logits
         exp_y = np.exp(y - np.max(y, axis=1, keepdims=True))
         probs = exp_y / np.sum(exp_y + 1e-12, axis=1, keepdims=True)
@@ -134,10 +125,10 @@ class CrossEntropyLoss:
 
 
         # Clip probabilities to [eps, 1-eps] to avoid log(0) Done this aftis after many random trials
-        clipped_probs = np.clip(probs[t.astype(bool)], self.eps, 1.0 - self.eps)
-        
+        clipped_probs = np.clip(probs[y_true.astype(bool)], self.eps, 1.0 - self.eps)
+
         per_sample_loss = -np.log(clipped_probs)
-        
+
         if self.reduction == 'mean':
             return np.mean(per_sample_loss)
         elif self.reduction == 'sum':
@@ -145,15 +136,15 @@ class CrossEntropyLoss:
         else:
             return per_sample_loss
 
-    def grad(self, y, t):
+    def grad(self, y, y_true):
         # Simple (1/B)*(One - hot vector - yhat)
-        return (1.0 / y.shape[0]) * (y - t)  # Maintain gradient scaling
+        return (1.0 / y.shape[0]) * (y - y_true)  # Maintain gradient scaling
 # -----------------------------------------------------------------------------------------------
 
 
 class Sequential:
 
-  def __init__(self, layers):
+  def __init__(self, layers=None):
     self.layers = layers
 
   def __call__(self, x):
@@ -181,3 +172,95 @@ class Sequential:
             gradients.append(layer.gradd["bias"] if layer.bias is not None else None)
             gradients.append(layer.gradd["weight"])
     return d, list(reversed(gradients))
+  
+
+  # -----------------------------------------------------------------------------------------------
+  
+  class Optimizer():
+    def __init__(self, lr=0.001, optimizer="sgd", momentum=0.9,
+                 epsilon=1e-8, beta=0.9, beta1=0.9, beta2=0.999, t=0, decay=0):
+      self.lr = lr
+      self.optimizer = optimizer
+      self.momentum = momentum
+      self.epsilon = epsilon
+      self.beta = beta
+      self.beta1 = beta1
+      self.beta2 = beta2
+      self.t = t
+      self.decay = decay
+
+
+
+    def __call__(self, param, dparam):
+      self.t+=1
+      self.run(param, dparam)
+
+    def run(self, param, dparam):
+        if(self.optimizer == "sgd"):
+            self.SGD(param, dparam)
+        elif(self.optimizer == "momentum"):
+            self.MomentumGD(param, dparam)
+        elif(self.optimizer == "nag"):
+            self.NAG(param, dparam)
+        elif(self.optimizer == "rmsprop"):
+            self.RMSProp(param, dparam)
+        elif(self.optimizer == "adam"):
+            self.Adam(param, dparam)
+        elif (self.optimizer == "nadam"):
+            self.NAdam(param, dparam)
+        else:
+            raise Exception("Invalid optimizer")
+
+    def SGD(self, param, dparam):
+        clip_value = 1
+        for p, grad in zip(param, dparam):
+            clipped_dparam = np.clip(grad, -clip_value, clip_value)
+            p -= self.lr * clipped_dparam #grad
+
+    def MomentumGD(self, param, dparam):
+        clip_value = 1
+        velocity = [np.zeros_like(p) for p in param]
+        for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
+            clipped_dparam = np.clip(grad, -clip_value, clip_value)
+            u = self.momentum * u + 0.1 * clipped_dparam
+            param -= self.lr * u     #clipped_dparam #grad
+
+    def NAG(self, param, dparam):
+        clip_value = 1
+        velocity = [np.zeros_like(p) for p in param]
+        for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
+            clipped_dparam = np.clip(grad, -clip_value, clip_value)
+            u = self.momentum * u + 0.1 * clipped_dparam
+            param -= self.lr * u + clipped_dparam    #clipped_dparam #grad
+
+    def RMSProp(self, param, dparam ):
+        velocity = [np.zeros_like(p) for p in param]
+        for i, (u, param, grad) in enumerate(zip(velocity, param, dparam)):
+            u = self.beta * u + (1 - self.beta) * (grad**2)
+            param -= (self.lr / (np.sqrt(u + self.epsilon)))
+
+    def Adam(self, param, dparam):
+        moments = [np.zeros_like(p) for p in param]
+        velocity = [np.zeros_like(p) for p in param]
+        for i, (m, v, param, grad) in enumerate(zip(moments, velocity, param, dparam)):
+            m = self.beta1 * m + (1 - self.beta1) * grad
+            m_hat = m/(1-self.beta1)
+
+            v = self.beta1 * v + (1 - self.beta2) * (grad**2)
+            v_hat = v/(1-self.beta2)
+
+            param -= ((self.lr * m_hat) / (np.sqrt(v_hat + self.epsilon)))
+
+
+    def NAdam(self, param, dparam, epoch):
+        i = epoch
+        moments = [np.zeros_like(p) for p in param]
+        velocity = [np.zeros_like(p) for p in param]
+        for i, (m, v, param, grad) in enumerate(zip(moments, velocity, param, dparam)):
+            m = self.beta1 * m + (1 - self.beta1) * grad
+            m_hat = m/(1-self.beta1**(i+1))
+
+            v = self.beta1 * v + (1 - self.beta2) * (grad**2)
+            v_hat = v/(1-self.beta2**(i+1))
+
+            param -= (self.lr  / (np.sqrt(v_hat + self.epsilon))) * (self.beta1*m_hat + (1-self.beta1)*grad/(1-self.beta1**(i+1)))
