@@ -55,54 +55,31 @@ This shows the list of all the options available and a bit of information about 
 ```sh
 $ python3 train.py -h
 ```
-```
-# The output of the above command is as follows:
 
-usage: train.py [-h] -wp WANDB_PROJECT -we WANDB_ENTITY [-d DATASET] [-e EPOCHS]
-                [-b BATCH_SIZE] [-l LOSS] [-o OPTIMIZER] [-lr LEARNING_RATE]
-                [-m MOMENTUM] [-beta BETA] [-beta1 BETA1] [-beta2 BETA2]
-                [-eps EPSILON] [-w_d WEIGHT_DECAY] [-w_i WEIGHT_INIT]
-                [-nhl NUM_LAYERS] [-sz HIDDEN_SIZE] [-a ACTIVATION]
+### Arguments to be Supported
 
-options:
-  -h, --help            show this help message and exit
-  -wp WANDB_PROJECT, --wandb_project WANDB_PROJECT
-                        Wandb project name
-  -we WANDB_ENTITY, --wandb_entity WANDB_ENTITY
-                        Wandb entity name
-  -d DATASET, --dataset DATASET
-                        Dataset to use choices=['fashion_mnist', 'mnist']
-  -e EPOCHS, --epochs EPOCHS
-                        Number of epochs
-  -b BATCH_SIZE, --batch_size BATCH_SIZE
-                        Batch size
-  -l LOSS, --loss LOSS  Loss function to use choices=['cross_entropy',
-                        'mean_squared_error']
-  -o OPTIMIZER, --optimizer OPTIMIZER
-                        Optimizer to use choices=['sgd', 'momentum', 'nag', 'rmsprop', 'adam', 'nadam']
-  -lr LEARNING_RATE, --learning_rate LEARNING_RATE
-                        Learning rate
-  -m MOMENTUM, --momentum MOMENTUM
-                        Momentum for Momentum and NAG
-  -beta BETA, --beta BETA
-                        Beta for RMSProp
-  -beta1 BETA1, --beta1 BETA1
-                        Beta1 for Adam and Nadam
-  -beta2 BETA2, --beta2 BETA2
-                        Beta2 for Adam and Nadam
-  -eps EPSILON, --epsilon EPSILON
-                        Epsilon for Adam and Nadam
-  -w_d WEIGHT_DECAY, --weight_decay WEIGHT_DECAY
-                        Weight decay
-  -w_i WEIGHT_INIT, --weight_init WEIGHT_INIT
-                        Weight initialization choices=['random', 'xavier']
-  -nhl NUM_LAYERS, --num_layers NUM_LAYERS
-                        Number of hidden layers
-  -sz HIDDEN_SIZE, --hidden_size HIDDEN_SIZE
-                        Hidden size
-  -a ACTIVATION, --activation ACTIVATION
-                        Activation function choices=['sigmoid', 'tanh', 'relu']
-```
+| Name              | Default Value  | Description                                                                 |
+|-------------------|----------------|-----------------------------------------------------------------------------|
+| `-wp`, `--wandb_project` | myprojectname | Project name used to track experiments in Weights & Biases dashboard.      |
+| `-we`, `--wandb_entity`  | myname        | WandB Entity used to track experiments in the Weights & Biases dashboard.  |
+| `-d`, `--dataset`         | fashion_mnist | choices: ["mnist", "fashion_mnist"]                                        |
+| `-e`, `--epochs`          | 1            | Number of epochs to train the neural network.                              |
+| `-b`, `--batch_size`      | 4            | Batch size used to train the neural network.                               |
+| `-l`, `--loss`            | cross_entropy| choices: ["mean_squared_error", "cross_entropy"]                           |
+| `-o`, `--optimizer`       | sgd          | choices: ["sgd", "momentum", "nag", "rmsprop", "adam", "nadam"]            |
+| `-lr`, `--learning_rate`  | 0.1          | Learning rate used to optimize model parameters.                           |
+| `-m`, `--momentum`        | 0.5          | Momentum used by momentum and nag optimizers.                              |
+| `-beta`, `--beta`         | 0.5          | Beta used by rmsprop optimizer.                                            |
+| `-beta1`, `--beta1`       | 0.5          | Beta1 used by adam and nadam optimizers.                                   |
+| `-beta2`, `--beta2`       | 0.5          | Beta2 used by adam and nadam optimizers.                                   |
+| `-eps`, `--epsilon`       | 0.000001     | Epsilon used by optimizers.                                                |
+| `-w_d`, `--weight_decay`  | 0.0          | Weight decay used by optimizers.                                           |
+| `-w_i`, `--weight_init`   | random       | choices: ["random", "Xavier"]                                              |
+| `-nhl`, `--num_layers`    | 1            | Number of hidden layers used in feedforward neural network.                |
+| `-sz`, `--hidden_size`    | 4            | Number of hidden neurons in a feedforward layer.                           |
+| `-a`, `--activation`      | sigmoid      | choices: ["identity", "sigmoid", "tanh", "ReLU"]                           |
+
+---
 
 ### To run a sweep using wandb:
 
