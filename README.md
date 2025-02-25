@@ -7,16 +7,16 @@ I have trid to build modules similar to pytorch!! So I have tried to use pytorch
 
 
 ### Used Python Libraries and version
-This is same as one the available on Google Colab.
+This is same as one the available on requirements.txt. Please install them and then run the code
 * python==3.11.11
 * wandb==0.19.6
 * tensforflow==2.18.0
 * keras==3.8.0
 * numpy==1.26.4
-* matplotlib==3.10.0
+* matplotlib==3.9.3
 
 Jump to section: [Usage](#usage)
-
+---
 ## Implementatino of Backpropagation, Optimizers and Loss Functions
 
 Backpropgatino Implemented for MLP layers:
@@ -37,10 +37,6 @@ Loss functions implemented:
 The default values set in the file train.py are from hyperparameter tuning done using wandb sweeps.
 ---
  
-
-
-
-
 ## Usage
 
 To run the file manually use the following command:
@@ -51,11 +47,11 @@ $ python3 train.py -wp <wandb_project_name> -we <wandb_entity_name>
 ```
 
 To run the file with custom values, check out the follwoing section.
-This shows the list of all the options available and a bit of information about them.
 ```sh
 $ python3 train.py -h
 ```
-
+This shows the list of all the options available and a bit of information about them.
+---
 ### Arguments to be Supported
 
 | Name              | Default Value  | Description                                                                 |
