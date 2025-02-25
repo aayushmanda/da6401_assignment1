@@ -1,3 +1,8 @@
+'''
+Aayushman | DA24S016
+DA6401: Assignment 1
+'''
+
 from helper import *
 import numpy as np
 import argparse
@@ -10,16 +15,40 @@ import matplotlib.pyplot as plt
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.1)
 
 # -----------------------------------------------------------------------------------------------
+# Parse arguments and update parameters_dict
+parser = argparse.ArgumentParser()
+# parser.add_argument("-wp", "--wandb_project", type=str, default="myprojectname", help="Wandb project name", required=True)
+# parser.add_argument("-we", "--wandb_entity", type=str, default="myname", help="Wandb entity name", required=True)
+parser.add_argument("-d", "--dataset", type=str, default="fashion_mnist", help="Dataset to use choices=['fashion_mnist', 'mnist']")
+parser.add_argument("-e", "--epochs", type=int, default=1, help="Number of epochs")
+parser.add_argument("-b", "--batch_size", type=int, default=4, help="Batch size")
+parser.add_argument("-l", "--loss", type=str, default="cross_entropy", help="Loss function to use choices=['cross_entropy', 'mean_squared_error']")
+parser.add_argument("-o", "--optimizer", type=str, default="sgd", help="Optimizer to use choices=['sgd', 'momentum', 'nag', 'rmsprop', 'adam', 'nadam']")
+parser.add_argument("-lr", "--learning_rate", type=float, default=0.1, help="Learning rate")
+parser.add_argument("-m", "--momentum", type=float, default=0.5, help="Momentum for Momentum and NAG")
+parser.add_argument("-beta", "--beta", type=float, default=0.5, help="Beta for RMSProp")
+parser.add_argument("-beta1", "--beta1", type=float, default=0.5, help="Beta1 for Adam and Nadam")
+parser.add_argument("-beta2", "--beta2", type=float, default=0.5, help="Beta2 for Adam and Nadam")
+parser.add_argument("-eps", "--epsilon", type=float, default=0.000001, help="Epsilon for Adam and Nadam")
+parser.add_argument("-w_d", "--weight_decay", type=float, default=0.0, help="Weight decay")
+parser.add_argument("-w_i", "--weight_init", type=str, default="random", help="Weight initialization choices=['random', 'xavier']")
+parser.add_argument("-nhl", "--num_layers", type=int, default=1, help="Number of hidden layers")
+parser.add_argument("-sz", "--hidden_size", type=int, default=4, help="Hidden size")
+parser.add_argument("-a", "--activation", type=str, default="sigmoid", help="Activation function choices=['sigmoid', 'tanh', 'relu']")
+
+args = parser.parse_args()
+# -----------------------------------------------------------------------------------------------
 #Parameters
 hid_layers = 3
 activation = "tanh"
 init = "Xavier"
 batch_size=64
 lossi = []
-nepoch = 3
+nepoch = 3 #args.epochs
 # optimizer = "rmsprop"
 opt = Optimizer(lr=1e-4, optimizer="adam", epsilon=1e-8)
 
+print(nepoch)
 # -----------------------------------------------------------------------------------------------
 
 X = train_images.reshape(train_images.shape[0], -1)/ 255.0
