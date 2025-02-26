@@ -46,7 +46,9 @@ batch_size=64
 lossi = []
 nepoch = 3 #args.epochs
 # optimizer = "rmsprop"
-opt = Optimizer(lr=1e-4, optimizer="adam", epsilon=1e-8)
+opt = Optimizer(lr=1e-4, optimizer="rmsprop", epsilon=1e-8)
+loss_fn = "mse"
+Loss = CrossEntropyLoss() if loss_fn=="cross_entropy" else MSE()
 
 print(nepoch)
 # -----------------------------------------------------------------------------------------------
@@ -126,10 +128,10 @@ for epoch in range(nepoch):
 
     # Forward Pass
     logits = model(Xb)
-    loss = CrossEntropyLoss()(logits, Yb)
+    loss = Loss(logits, Yb)
 
     #Backward Pass
-    dout = CrossEntropyLoss().grad(logits, Yb)
+    dout = Loss.grad(logits, Yb)
     dout = model.backward(dout)
 
     batch_num = i//batch_size
