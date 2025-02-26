@@ -164,12 +164,13 @@ class MSE:
       # For each sample in the batch, compute:
       #   dL/dp = 2*(probs - y_true)/batch_size   (MSE derivative w.r.t. softmax outputs)
       #   dp/dz = Jacobian of softmax = diag(p) - p pᵀ
-      # and then dL/dz = (dp/dz) · (dL/dp)
+      #   and then dL/dz = (dp/dz) · (dL/dp)
+      #   Loop here makes we iterate through every x_i from batch
       for i in range(batch_size):
           p = probs[i].reshape(-1, 1)  # Column vector (num_classes, 1)
           # Jacobian for softmax (num_classes x num_classes)
-          J = np.diagflat(p) - np.dot(p, p.T)
-          dL_dp = 2 * (probs[i] - y_true[i]) / batch_size
+          J = np.diagflat(p) - np.dot(p, p.T) #outerproduct
+          dLdp = 2 * (probs[i] - y_true[i]) / batch_size
           grad_input[i, :] = np.dot(J, dL_dp)
       return grad_input
 
