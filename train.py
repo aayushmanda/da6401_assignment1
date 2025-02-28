@@ -71,7 +71,6 @@ hid_layers = 3
 activation = args.activation
 init = args.weight_init.capitalize()
 batch_size=args.batch_size
-lossi = [] 
 nepoch = args.epochs
 # optimizer = "rmsprop"
 opt = Optimizer(lr=1e-4, optimizer=args.optimizer)
@@ -90,7 +89,7 @@ Y = np.eye(10)[Y]     #one_hot encoding
 #Model
 
 # Define layer sizes
-layer_sizes = [784, 1024, 512, 256, 128, 64]
+layer_sizes = [784, 512, 256, 256, 128, 64]
 layer_sizes = layer_sizes[:hid_layers]
 
 
@@ -172,9 +171,9 @@ for epoch in range(nepoch):
 
     if batch_num%200 == 0: # print every once in a while
       print(f'Epoch({epoch+1}/{nepoch})\t Batch({batch_num:2d}/{total_batch:2d}): \tTrain Loss  {loss:.4f}')
-      wandb.log({"Epoch" : epoch+1, "Train Loss": loss})
+  wandb.log({"Epoch" : epoch+1, "Train Loss": loss})
 
-    lossi.append(loss)
+
 
   logits = model(X)
   train_loss = CrossEntropyLoss()(logits, Y)
@@ -195,7 +194,6 @@ x = x.reshape(x.shape[0], -1)
 y = test_labels
 
 
-
 #Forward Pass
 logits = model(x)
 accuracy_formula = np.mean(np.argmax(logits, axis=1) == y)
@@ -204,6 +202,3 @@ print(f"Test Accuracy: {accuracy_formula}")
 
 
 wandb.finish()
-
-
-
