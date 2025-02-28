@@ -1,0 +1,15 @@
+Done!
+3
+Activation used is Tanh
+-------x-------
+Traceback (most recent call last):
+  File "/workspaces/da6401_assignment1/train.py", line 169, in <module>
+    opt(model.parameters(), dout[1])
+  File "/workspaces/da6401_assignment1/helper.py", line 229, in __call__
+    self.run(param, dparam)
+  File "/workspaces/da6401_assignment1/helper.py", line 239, in run
+    self.RMSProp(param, dparam)
+  File "/workspaces/da6401_assignment1/helper.py", line 271, in RMSProp
+    self.velocity = [np.zeros_like(param) for param in model.parameters()]
+                                                       ^^^^^
+NameError: name 'model' is not defined

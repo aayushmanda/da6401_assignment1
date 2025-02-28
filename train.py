@@ -5,6 +5,7 @@ DA6401: Assignment 1
 
 from helper import *
 import numpy as np
+import wandb
 import argparse
 from sklearn.model_selection import train_test_split
 from keras.datasets import fashion_mnist
@@ -13,6 +14,33 @@ import matplotlib.pyplot as plt
 # Load the Fashion-MNIST dataset
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
 train_images, val_images, train_labels, val_labels = train_test_split(train_images, train_labels, test_size=0.1)
+
+
+wandb.login()
+
+wandb.init(project="trail-1")
+
+# Get the number of classes and their name mappings
+num_classes = 10
+class_mapping = {0: "T-shirt/top", 1: "Trouser", 2: "Pullover", 3: "Dress", 4: "Coat", 5: "Sandal", 6: "Shirt", 7: "Sneaker", 8: "Bag", 9: "Ankle boot"}
+print("Done!")
+
+##############################################################################
+# Plotting a figure from each class
+plt.figure(figsize=[12, 5])
+img_list = []
+class_list = []
+
+for i in range(num_classes):
+    position = np.argmax(train_labels==i)
+    image = train_images[position,:,:]
+    plt.subplot(2, 5, i+1)
+    plt.imshow(image)
+    plt.title(class_mapping[i])
+    img_list.append(image)
+    class_list.append(class_mapping[i])
+    
+wandb.log({"Question 1": [wandb.Image(img, caption=caption) for img, caption in zip(img_list, class_list)]})
 
 # -----------------------------------------------------------------------------------------------
 # Parse arguments and update parameters_dict
@@ -40,15 +68,15 @@ args = parser.parse_args()
 # -----------------------------------------------------------------------------------------------
 #Parameters
 hid_layers = 3
-activation = "tanh"
-init = "Xavier"
-batch_size=64
-lossi = []
-nepoch = 3 #args.epochs
+activation = args.activation
+init = args.weight_init.capitalize()
+batch_size=args.batch_size
+lossi = [] 
+nepoch = args.epochs
 # optimizer = "rmsprop"
-opt = Optimizer(lr=1e-4, optimizer="rmsprop", epsilon=1e-8)
-loss_fn = "mse"
-Loss = CrossEntropyLoss() if loss_fn=="cross_entropy" else MSE()
+opt = Optimizer(lr=1e-4, optimizer=args.optimizer)
+loss_fn = args.loss
+Loss = CrossEntropyLoss() #if loss_fn=="cross_entropy" else MSE()
 
 print(nepoch)
 # -----------------------------------------------------------------------------------------------
@@ -144,6 +172,7 @@ for epoch in range(nepoch):
 
     if batch_num%200 == 0: # print every once in a while
       print(f'Epoch({epoch+1}/{nepoch})\t Batch({batch_num:2d}/{total_batch:2d}): \tTrain Loss  {loss:.4f}')
+      wandb.log({"Epoch" : epoch+1, "Train Loss": loss})
 
     lossi.append(loss)
 
@@ -157,6 +186,7 @@ for epoch in range(nepoch):
   val_accuracy = np.mean(np.argmax(val_logits, axis=1) == np.argmax(Yv, axis=1))
 
   print(f"End of Epoch: {epoch+1} Train Accuracy: {train_accuracy:.4f} Validation Accuracy: {val_accuracy:.4f}")
+  wandb.log({"Epoch": epoch+1, "Train Accuracy": train_accuracy, "Validation Accuracy": val_accuracy})
 
 # -----------------------------------------------------------------------------------------------
 # Test Accuracy
@@ -172,8 +202,8 @@ accuracy_formula = np.mean(np.argmax(logits, axis=1) == y)
 print("##################################")
 print(f"Test Accuracy: {accuracy_formula}")
 
-plt.plot(lossi)
-plt.show()
+
+wandb.finish()
 
 
 

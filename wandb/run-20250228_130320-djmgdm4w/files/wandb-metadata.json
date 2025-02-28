@@ -1,0 +1,45 @@
+{
+  "os":  "Linux-6.5.0-1025-azure-x86_64-with-glibc2.31",
+  "python":  "CPython 3.12.1",
+  "startedAt":  "2025-02-28T13:03:20.799401Z",
+  "args":  [
+    "--epochs",
+    "3",
+    "--loss",
+    "cross_entropy",
+    "--weight_init",
+    "xavier",
+    "--activation",
+    "tanh",
+    "--batch_size",
+    "64",
+    "--optimizer",
+    "rmsprop"
+  ],
+  "program":  "/workspaces/da6401_assignment1/train.py",
+  "codePath":  "train.py",
+  "git":  {
+    "remote":  "https://github.com/aayushmanda/da6401_assignment1",
+    "commit":  "b9caca3e9a47946ee6cc5209fc75e49b0b4e0fde"
+  },
+  "email":  "da24s016@smail.iitm.ac.in",
+  "root":  "/workspaces/da6401_assignment1",
+  "host":  "codespaces-f6bd63",
+  "executable":  "/home/codespace/.python/current/bin/python",
+  "codePathLocal":  "train.py",
+  "cpu_count":  1,
+  "cpu_count_logical":  2,
+  "disk":  {
+    "/":  {
+      "total":  "33636024320",
+      "used":  "14118674432"
+    }
+  },
+  "memory":  {
+    "total":  "8314736640"
+  },
+  "cpu":  {
+    "count":  1,
+    "countLogical":  2
+  }
+}

@@ -171,7 +171,7 @@ class MSE:
           # Jacobian for softmax (num_classes x num_classes)
           J = np.diagflat(p) - np.dot(p, p.T) #outerproduct
           dLdp = 2 * (probs[i] - y_true[i]) / batch_size
-          grad_input[i, :] = np.dot(J, dL_dp)
+          grad_input[i, :] = np.dot(J, dLdp)
       return grad_input
 
 # -----------------------------------------------------------------------------------------------
@@ -252,7 +252,8 @@ class Optimizer():
 
     def MomentumGD(self, param, dparam):
         clip_value = 1e-3
-        self.velocity = [np.zeros_like(param) for param in model.parameters()]
+        #tried using zeros but got Value error maximum dim support for ndarray is 32.
+        self.velocity = [np.zeros_like(p) for p in param]
         for i, (u, param, grad) in enumerate(zip(self.velocity, param, dparam)):
             clipped_dparam = np.clip(grad, -clip_value, clip_value)
             u = self.momentum * u + 0.1 * clipped_dparam
@@ -260,7 +261,7 @@ class Optimizer():
 
     def NAG(self, param, dparam):
         clip_value = 1e-3
-        self.velocity = [np.zeros_like(param) for param in model.parameters()]
+        self.velocity = [np.zeros_like(p) for p in param]
         for i, (u, param, grad) in enumerate(zip(self.velocity, param, dparam)):
             clipped_dparam = np.clip(grad, -clip_value, clip_value)
             u = self.momentum * u + 0.1 * clipped_dparam
@@ -268,15 +269,15 @@ class Optimizer():
 
     def RMSProp(self, param, dparam ):
         clip_value = 1e-3
-        self.velocity = [np.zeros_like(param) for param in model.parameters()]
+        self.velocity = [np.zeros_like(p) for p in param]
         for i, (u, param, grad) in enumerate(zip(self.velocity, param, dparam)):
             clipped_grad = np.clip(grad, -clip_value, clip_value)
             u = self.beta * u + (1 - self.beta) * (clipped_grad**2)
             param -= ((self.lr * clipped_grad) / (np.sqrt(u + self.epsilon)))
 
     def Adam(self, param, dparam):
-        self.moments = [np.zeros_like(param) for param in model.parameters()]
-        self.velocity = [np.zeros_like(param) for param in model.parameters()]
+        self.moments =  [np.zeros_like(p) for p in param]
+        self.velocity =  [np.zeros_like(p) for p in param]
         for i, (m, v, param, grad) in enumerate(zip(self.moments, self.velocity, param, dparam)):
             m = self.beta1 * m + (1 - self.beta1) * grad
             m_hat = m/(1-self.beta1)
@@ -289,8 +290,8 @@ class Optimizer():
 
     def NAdam(self, param, dparam, epoch):
         i = epoch
-        self.moments = [np.zeros_like(param) for param in model.parameters()]
-        self.velocity = [np.zeros_like(param) for param in model.parameters()]
+        self.moments =  [np.zeros_like(p) for p in param]
+        self.velocity =  [np.zeros_like(p) for p in param]
         for i, (m, v, param, grad) in enumerate(zip(self.moments, self.velocity, param, dparam)):
             m = self.beta1 * m + (1 - self.beta1) * grad
             m_hat = m/(1-self.beta1**(i+1))

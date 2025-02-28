@@ -1,0 +1,12 @@
+Done!
+3
+Activation used is Tanh
+-------x-------
+Traceback (most recent call last):
+  File "/workspaces/da6401_assignment1/train.py", line 162, in <module>
+    dout = Loss.grad(logits, Yb)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/da6401_assignment1/helper.py", line 174, in grad
+    grad_input[i, :] = np.dot(J, dL_dp)
+                                 ^^^^^
+NameError: name 'dL_dp' is not defined. Did you mean: 'dLdp'?

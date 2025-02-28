@@ -1,0 +1,9 @@
+Done!
+3
+Activation used is Tanh
+-------x-------
+Epoch(1/3)	 Batch( 0/843): 	Train Loss  20.9588
+Epoch(1/3)	 Batch(200/843): 	Train Loss  18.3182
+Epoch(1/3)	 Batch(400/843): 	Train Loss  16.9314
+Epoch(1/3)	 Batch(600/843): 	Train Loss  13.5907
+Epoch(1/3)	 Batch(800/843): 	Train Loss  11.2363

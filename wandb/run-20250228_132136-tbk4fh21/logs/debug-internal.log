@@ -1,0 +1,7 @@
+{"time":"2025-02-28T13:21:36.28091419Z","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/workspaces/da6401_assignment1/wandb/run-20250228_132136-tbk4fh21/logs/debug-core.log"}
+{"time":"2025-02-28T13:21:36.384832414Z","level":"INFO","msg":"created new stream","id":"tbk4fh21"}
+{"time":"2025-02-28T13:21:36.384873851Z","level":"INFO","msg":"stream: started","id":"tbk4fh21"}
+{"time":"2025-02-28T13:21:36.384905512Z","level":"INFO","msg":"writer: Do: started","stream_id":"tbk4fh21"}
+{"time":"2025-02-28T13:21:36.385111818Z","level":"INFO","msg":"handler: started","stream_id":"tbk4fh21"}
+{"time":"2025-02-28T13:21:36.385276064Z","level":"INFO","msg":"sender: started","stream_id":"tbk4fh21"}
+{"time":"2025-02-28T13:21:36.843106378Z","level":"INFO","msg":"Starting system monitor"}

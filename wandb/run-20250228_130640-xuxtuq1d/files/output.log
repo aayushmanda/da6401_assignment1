@@ -1,0 +1,15 @@
+Done!
+3
+Activation used is Tanh
+-------x-------
+Traceback (most recent call last):
+  File "/workspaces/da6401_assignment1/train.py", line 169, in <module>
+    opt(model.parameters(), dout[1])
+  File "/workspaces/da6401_assignment1/helper.py", line 229, in __call__
+    self.run(param, dparam)
+  File "/workspaces/da6401_assignment1/helper.py", line 233, in run
+    self.SGD(param, dparam)
+  File "/workspaces/da6401_assignment1/helper.py", line 251, in SGD
+    p -= self.lr * clipped_dparam #grad
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: non-broadcastable output operand with shape () doesn't match the broadcast shape (1024,)
