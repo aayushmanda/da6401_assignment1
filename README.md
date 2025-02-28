@@ -43,12 +43,12 @@ To run the file manually use the following command:
 ```sh
 # This will run the default values set in train.py
 
-$ python3 train.py -wp <wandb_project_name> -we <wandb_entity_name>
+$@aayushmanda ➜ /workspaces/da6401_assignment1 (main) $ python3 train.py -wp <wandb_project_name> -we <wandb_entity_name>
 ```
 
 To run the file with custom values, check out the follwoing section.
 ```sh
-$ python3 train.py -h
+@aayushmanda ➜ /workspaces/da6401_assignment1 (main) $ python3 train.py --epochs 3 --loss mse --weight_init xavier --activation tanh --batch_size 64 --optimizer rmsprop
 ```
 This shows the list of all the options available and a bit of information about them.
 ---
