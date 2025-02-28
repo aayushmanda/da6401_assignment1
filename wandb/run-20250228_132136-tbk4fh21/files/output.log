@@ -4,3 +4,5 @@ Activation used is Tanh
 -------x-------
 Epoch(1/3)	 Batch( 0/843): 	Train Loss  2.3606
 Epoch(1/3)	 Batch(200/843): 	Train Loss  1.9246
+Epoch(1/3)	 Batch(400/843): 	Train Loss  1.8744
+Epoch(1/3)	 Batch(600/843): 	Train Loss  1.8586
