@@ -1,13 +1,18 @@
 ## Assignemnt 1 --- DA6401: Introduction to Deep Learning
 
-- [Assignment Homepage](https://wandb.ai/sivasankar1234/DA6401/reports/DA6401-Assignment-1--VmlldzoxMTQ2NDQwNw)
+- [Assignment Report](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/reports/DA6401-Assignment-1--VmlldzoxMTY5NzQ0Nw)
 
-I have tried to build modules similar to pytorch!! So I have tried to use pytorch github codes and other code for reference. Dataset used are Fashion-MNIST and MNIST. And is loaded through [keras api](https://keras.io/api/datasets/fashion_mnist/).
+- [Project Homepage]((https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/sweeps/diwa9zet?nw=nwuserda24s016))
+
+
 ---
 
 
 ### Used Python Libraries and version
-This is same as one the available on requirements.txt. Please install them and then run the code
+Dataset used are Fashion-MNIST and MNIST. And is loaded through [keras api](https://keras.io/api/datasets/fashion_mnist/).
+This is same as one the available on requirements.txt. 
+
+Please install them and then run the code
 * python==3.11.11
 * wandb==0.19.6
 * tensforflow==2.18.0
