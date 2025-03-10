@@ -1,0 +1,16 @@
+{"time":"2025-03-10T12:07:05.932669487Z","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/workspaces/da6401_assignment1/wandb/run-20250310_120705-rivvbdlf/logs/debug-core.log"}
+{"time":"2025-03-10T12:07:06.0384898Z","level":"INFO","msg":"created new stream","id":"rivvbdlf"}
+{"time":"2025-03-10T12:07:06.038525437Z","level":"INFO","msg":"stream: started","id":"rivvbdlf"}
+{"time":"2025-03-10T12:07:06.038606556Z","level":"INFO","msg":"writer: Do: started","stream_id":"rivvbdlf"}
+{"time":"2025-03-10T12:07:06.038715008Z","level":"INFO","msg":"handler: started","stream_id":"rivvbdlf"}
+{"time":"2025-03-10T12:07:06.038739894Z","level":"INFO","msg":"sender: started","stream_id":"rivvbdlf"}
+{"time":"2025-03-10T12:07:06.410135175Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-10T12:08:03.6985294Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-10T12:08:03.699519797Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-10T12:08:04.698240135Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact run-rivvbdlf-conf_mat_train_table","runtime_seconds":1.63309652},{"desc":"uploading artifact run-rivvbdlf-conf_mat_val_table","runtime_seconds":1.3287627340000001,"subtasks":[{"desc":"conf_mat_val_table.table.json","runtime_seconds":0.093983694,"progress":"3.4KB/3.4KB"}]},{"desc":"uploading artifact run-rivvbdlf-conf_mat_test_table","runtime_seconds":1.009895662},{"desc":"uploading config.yaml","runtime_seconds":0.35186717,"progress":"4.4KB/4.4KB"}],"total_operations":4}}
+{"time":"2025-03-10T12:08:07.457168688Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-10T12:08:08.888196608Z","level":"INFO","msg":"stream: closing","id":"rivvbdlf"}
+{"time":"2025-03-10T12:08:08.888220332Z","level":"INFO","msg":"handler: closed","stream_id":"rivvbdlf"}
+{"time":"2025-03-10T12:08:08.888263441Z","level":"INFO","msg":"sender: closed","stream_id":"rivvbdlf"}
+{"time":"2025-03-10T12:08:08.888265066Z","level":"INFO","msg":"writer: Close: closed","stream_id":"rivvbdlf"}
+{"time":"2025-03-10T12:08:08.888329486Z","level":"INFO","msg":"stream: closed","id":"rivvbdlf"}

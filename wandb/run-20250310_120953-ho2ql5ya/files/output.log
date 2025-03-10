@@ -1,0 +1,53 @@
+Done!
+Activation used is Tanh
+-------x-------
+Epoch(1/10)	 Batch( 0/843): 	Train Loss  16.5541
+Epoch(1/10)	 Batch(200/843): 	Train Loss  17.4935
+Epoch(1/10)	 Batch(400/843): 	Train Loss  14.5136
+Epoch(1/10)	 Batch(600/843): 	Train Loss  16.6835
+Epoch(1/10)	 Batch(800/843): 	Train Loss  15.9003
+End of Epoch: 1 Train Accuracy: 0.0969 Validation Accuracy: 0.0963
+-------x-------
+Epoch(2/10)	 Batch( 0/843): 	Train Loss  14.2074
+Epoch(2/10)	 Batch(200/843): 	Train Loss  15.1890
+Epoch(2/10)	 Batch(400/843): 	Train Loss  14.9328
+Epoch(2/10)	 Batch(600/843): 	Train Loss  15.1138
+Epoch(2/10)	 Batch(800/843): 	Train Loss  14.2145
+End of Epoch: 2 Train Accuracy: 0.0996 Validation Accuracy: 0.0980
+-------x-------
+Epoch(3/10)	 Batch( 0/843): 	Train Loss  14.4408
+Epoch(3/10)	 Batch(200/843): 	Train Loss  15.3615
+Epoch(3/10)	 Batch(400/843): 	Train Loss  15.7586
+Epoch(3/10)	 Batch(600/843): 	Train Loss  15.9947
+Epoch(3/10)	 Batch(800/843): 	Train Loss  12.2198
+End of Epoch: 3 Train Accuracy: 0.1028 Validation Accuracy: 0.1023
+-------x-------
+Epoch(4/10)	 Batch( 0/843): 	Train Loss  15.5577
+Epoch(4/10)	 Batch(200/843): 	Train Loss  13.0510
+Epoch(4/10)	 Batch(400/843): 	Train Loss  12.6659
+Epoch(4/10)	 Batch(600/843): 	Train Loss  15.8662
+Epoch(4/10)	 Batch(800/843): 	Train Loss  13.9870
+End of Epoch: 4 Train Accuracy: 0.1044 Validation Accuracy: 0.1038
+-------x-------
+Epoch(5/10)	 Batch( 0/843): 	Train Loss  13.3249
+Epoch(5/10)	 Batch(200/843): 	Train Loss  14.2723
+Epoch(5/10)	 Batch(400/843): 	Train Loss  13.7106
+Epoch(5/10)	 Batch(600/843): 	Train Loss  14.3253
+Epoch(5/10)	 Batch(800/843): 	Train Loss  13.8546
+End of Epoch: 5 Train Accuracy: 0.1051 Validation Accuracy: 0.1068
+-------x-------
+Epoch(6/10)	 Batch( 0/843): 	Train Loss  13.7582
+Epoch(6/10)	 Batch(200/843): 	Train Loss  13.7602
+Epoch(6/10)	 Batch(400/843): 	Train Loss  14.0732
+Epoch(6/10)	 Batch(600/843): 	Train Loss  12.5224
+Epoch(6/10)	 Batch(800/843): 	Train Loss  13.9376
+End of Epoch: 6 Train Accuracy: 0.1064 Validation Accuracy: 0.1088
+-------x-------
+Epoch(7/10)	 Batch( 0/843): 	Train Loss  12.6612
+Epoch(7/10)	 Batch(200/843): 	Train Loss  10.3343
+Epoch(7/10)	 Batch(400/843): 	Train Loss  12.6080
+Epoch(7/10)	 Batch(600/843): 	Train Loss  10.5773
+Epoch(7/10)	 Batch(800/843): 	Train Loss  13.2927
+End of Epoch: 7 Train Accuracy: 0.1067 Validation Accuracy: 0.1105
+-------x-------
+Epoch(8/10)	 Batch( 0/843): 	Train Loss  12.1664

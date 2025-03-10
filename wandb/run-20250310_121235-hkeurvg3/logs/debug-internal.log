@@ -1,0 +1,16 @@
+{"time":"2025-03-10T12:12:35.293690735Z","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/workspaces/da6401_assignment1/wandb/run-20250310_121235-hkeurvg3/logs/debug-core.log"}
+{"time":"2025-03-10T12:12:35.400672376Z","level":"INFO","msg":"created new stream","id":"hkeurvg3"}
+{"time":"2025-03-10T12:12:35.400698344Z","level":"INFO","msg":"stream: started","id":"hkeurvg3"}
+{"time":"2025-03-10T12:12:35.402139078Z","level":"INFO","msg":"handler: started","stream_id":"hkeurvg3"}
+{"time":"2025-03-10T12:12:35.402197126Z","level":"INFO","msg":"sender: started","stream_id":"hkeurvg3"}
+{"time":"2025-03-10T12:12:35.402229046Z","level":"INFO","msg":"writer: Do: started","stream_id":"hkeurvg3"}
+{"time":"2025-03-10T12:12:35.85096526Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-10T12:13:29.721488948Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-10T12:13:29.721977345Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-10T12:13:30.722060963Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact run-hkeurvg3-conf_mat_train_table","runtime_seconds":1.617766144,"subtasks":[{"desc":"conf_mat_train_table.table.json","runtime_seconds":0.336295724,"progress":"3.4KB/3.4KB"}]},{"desc":"uploading artifact run-hkeurvg3-conf_mat_val_table","runtime_seconds":1.316064368,"subtasks":[{"desc":"conf_mat_val_table.table.json","runtime_seconds":0.028732412,"progress":"3.3KB/3.3KB"}]},{"desc":"uploading artifact run-hkeurvg3-conf_mat_test_table","runtime_seconds":1.004782286},{"desc":"uploading config.yaml","runtime_seconds":0.312121975,"progress":"4.4KB/4.4KB"}],"total_operations":4}}
+{"time":"2025-03-10T12:13:33.636942166Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-10T12:13:34.991060764Z","level":"INFO","msg":"stream: closing","id":"hkeurvg3"}
+{"time":"2025-03-10T12:13:34.99108008Z","level":"INFO","msg":"handler: closed","stream_id":"hkeurvg3"}
+{"time":"2025-03-10T12:13:34.991094216Z","level":"INFO","msg":"writer: Close: closed","stream_id":"hkeurvg3"}
+{"time":"2025-03-10T12:13:34.991158155Z","level":"INFO","msg":"sender: closed","stream_id":"hkeurvg3"}
+{"time":"2025-03-10T12:13:34.991169667Z","level":"INFO","msg":"stream: closed","id":"hkeurvg3"}

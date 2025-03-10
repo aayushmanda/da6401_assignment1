@@ -59,7 +59,7 @@ parser.add_argument("-beta1", "--beta1", type=float, default=0.9, help="Beta1 fo
 parser.add_argument("-beta2", "--beta2", type=float, default=0.99, help="Beta2 for Adam and Nadam")
 parser.add_argument("-eps", "--epsilon", type=float, default=0.000001, help="Epsilon for Adam and Nadam")
 parser.add_argument("-w_d", "--weight_decay", type=float, default=0.0, help="Weight decay")
-parser.add_argument("-w_i", "--weight_init", type=str, default="random", help="Weight initialization choices=['random', 'xavier']")
+parser.add_argument("-w_i", "--weight_init", type=str, default="xavier", help="Weight initialization choices=['random', 'xavier']")
 parser.add_argument("-nhl", "--num_layers", type=int, default=4, help="Number of hidden layers")
 parser.add_argument("-sz", "--hidden_size", type=int, default=128, help="Hidden size")
 parser.add_argument("-a", "--activation", type=str, default="relu", help="Activation function choices=['sigmoid', 'tanh', 'relu']")
@@ -72,6 +72,7 @@ activation = args.activation
 init = args.weight_init.capitalize()
 batch_size=args.batch_size
 nepoch = args.epochs
+
 opt_parameter = {"lr": args.learning_rate,
                  "optimizer": args.optimizer,
                  "momentum": args.momentum,
@@ -81,18 +82,15 @@ opt_parameter = {"lr": args.learning_rate,
                  "beta2": args.beta2,
                  "decay": args.weight_decay}
 
-
 opt = Optimizer(**opt_parameter)
 loss_fn = args.loss
 Loss = CrossEntropyLoss() if loss_fn=="cross_entropy" else MSE()
 
-print(nepoch)
 # -----------------------------------------------------------------------------------------------
-
+#Train Data prep
 X = train_images.reshape(train_images.shape[0], -1)/ 255.0
 Y = train_labels
 Y = np.eye(10)[Y]     #one_hot encoding
-
 
 # -----------------------------------------------------------------------------------------------
 #Model
@@ -212,8 +210,6 @@ print("##################################")
 print(f"Test Accuracy: {accuracy_formula}")
 
 
-
-
 train_pred = np.argmax(model(X), axis=1)
 val_pred = np.argmax(model(X_val), axis=1)
 test_pred = np.argmax(model(x), axis=1)
@@ -223,25 +219,22 @@ x = test_images
 x = x.reshape(x.shape[0], -1)/255.0
 y = test_labels
 
-#Forward Pass
-logits = model(x)
-accuracy_formula = np.mean(np.argmax(logits, axis=1) == y)
-print(f"Test Accuracy: {accuracy_formula}")
-
+CLASS_NAMES = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
     # Log confusion matrices
 wandb.log({
     'conf_mat_train': wandb.plot.confusion_matrix(
         y_true=train_labels,
         preds=train_pred,
-        class_names=class_mapping.items()),
+        class_names=CLASS_NAMES),
     'conf_mat_val': wandb.plot.confusion_matrix(
         y_true=val_labels,
         preds=val_pred,
-        class_names=class_mapping.items()),
+        class_names=CLASS_NAMES),
     'conf_mat_test': wandb.plot.confusion_matrix(
         y_true=test_labels,
         preds=test_pred,
-        class_names=class_mapping.items())
+        class_names=CLASS_NAMES)
 })
 
 wandb.finish()

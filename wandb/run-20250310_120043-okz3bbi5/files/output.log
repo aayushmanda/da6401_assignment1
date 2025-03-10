@@ -1,0 +1,84 @@
+Done!
+10
+Activation used is ReLu
+-------x-------
+Epoch(1/10)	 Batch( 0/843): 	Train Loss  27.1993
+Epoch(1/10)	 Batch(200/843): 	Train Loss  24.1771
+Epoch(1/10)	 Batch(400/843): 	Train Loss  25.4723
+Epoch(1/10)	 Batch(600/843): 	Train Loss  24.1771
+Epoch(1/10)	 Batch(800/843): 	Train Loss  25.0791
+End of Epoch: 1 Train Accuracy: 0.0898 Validation Accuracy: 0.0890
+-------x-------
+Epoch(2/10)	 Batch( 0/843): 	Train Loss  24.1771
+Epoch(2/10)	 Batch(200/843): 	Train Loss  25.0406
+Epoch(2/10)	 Batch(400/843): 	Train Loss  23.3137
+Epoch(2/10)	 Batch(600/843): 	Train Loss  25.4723
+Epoch(2/10)	 Batch(800/843): 	Train Loss  23.7479
+End of Epoch: 2 Train Accuracy: 0.0974 Validation Accuracy: 0.0930
+-------x-------
+Epoch(3/10)	 Batch( 0/843): 	Train Loss  25.9041
+Epoch(3/10)	 Batch(200/843): 	Train Loss  25.0406
+Epoch(3/10)	 Batch(400/843): 	Train Loss  26.0246
+Epoch(3/10)	 Batch(600/843): 	Train Loss  25.4723
+Epoch(3/10)	 Batch(800/843): 	Train Loss  24.6089
+End of Epoch: 3 Train Accuracy: 0.1186 Validation Accuracy: 0.1132
+-------x-------
+Epoch(4/10)	 Batch( 0/843): 	Train Loss  24.1771
+Epoch(4/10)	 Batch(200/843): 	Train Loss  22.8819
+Epoch(4/10)	 Batch(400/843): 	Train Loss  23.3137
+Epoch(4/10)	 Batch(600/843): 	Train Loss  23.3137
+Epoch(4/10)	 Batch(800/843): 	Train Loss  24.6089
+End of Epoch: 4 Train Accuracy: 0.1169 Validation Accuracy: 0.1138
+-------x-------
+Epoch(5/10)	 Batch( 0/843): 	Train Loss  23.7454
+Epoch(5/10)	 Batch(200/843): 	Train Loss  25.4723
+Epoch(5/10)	 Batch(400/843): 	Train Loss  25.4723
+Epoch(5/10)	 Batch(600/843): 	Train Loss  26.3358
+Epoch(5/10)	 Batch(800/843): 	Train Loss  24.4649
+End of Epoch: 5 Train Accuracy: 0.1074 Validation Accuracy: 0.1113
+-------x-------
+Epoch(6/10)	 Batch( 0/843): 	Train Loss  25.9041
+Epoch(6/10)	 Batch(200/843): 	Train Loss  25.9041
+Epoch(6/10)	 Batch(400/843): 	Train Loss  26.3358
+Epoch(6/10)	 Batch(600/843): 	Train Loss  24.8791
+Epoch(6/10)	 Batch(800/843): 	Train Loss  26.0852
+End of Epoch: 6 Train Accuracy: 0.0974 Validation Accuracy: 0.1025
+-------x-------
+Epoch(7/10)	 Batch( 0/843): 	Train Loss  25.5786
+Epoch(7/10)	 Batch(200/843): 	Train Loss  25.3075
+Epoch(7/10)	 Batch(400/843): 	Train Loss  23.7454
+Epoch(7/10)	 Batch(600/843): 	Train Loss  23.9851
+Epoch(7/10)	 Batch(800/843): 	Train Loss  25.8983
+End of Epoch: 7 Train Accuracy: 0.0895 Validation Accuracy: 0.0917
+-------x-------
+Epoch(8/10)	 Batch( 0/843): 	Train Loss  23.4552
+Epoch(8/10)	 Batch(200/843): 	Train Loss  23.8819
+Epoch(8/10)	 Batch(400/843): 	Train Loss  24.6089
+Epoch(8/10)	 Batch(600/843): 	Train Loss  23.8852
+Epoch(8/10)	 Batch(800/843): 	Train Loss  24.1771
+End of Epoch: 8 Train Accuracy: 0.0864 Validation Accuracy: 0.0933
+-------x-------
+Epoch(9/10)	 Batch( 0/843): 	Train Loss  24.6089
+Epoch(9/10)	 Batch(200/843): 	Train Loss  25.0406
+Epoch(9/10)	 Batch(400/843): 	Train Loss  24.7302
+Epoch(9/10)	 Batch(600/843): 	Train Loss  22.4502
+Epoch(9/10)	 Batch(800/843): 	Train Loss  24.2926
+End of Epoch: 9 Train Accuracy: 0.0978 Validation Accuracy: 0.1037
+-------x-------
+Epoch(10/10)	 Batch( 0/843): 	Train Loss  24.1771
+Epoch(10/10)	 Batch(200/843): 	Train Loss  26.1682
+Epoch(10/10)	 Batch(400/843): 	Train Loss  21.5295
+Epoch(10/10)	 Batch(600/843): 	Train Loss  25.8131
+Epoch(10/10)	 Batch(800/843): 	Train Loss  26.1825
+End of Epoch: 10 Train Accuracy: 0.0988 Validation Accuracy: 0.1007
+##################################
+Test Accuracy: 0.1012
+Test Accuracy: 0.102
+Traceback (most recent call last):
+  File "/workspaces/da6401_assignment1/train.py", line 233, in <module>
+    'conf_mat_train': wandb.plot.confusion_matrix(
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/wandb/plot/confusion_matrix.py", line 163, in confusion_matrix
+    [class_names[i], class_names[j], counts[i, j]]
+     ~~~~~~~~~~~^^^
+TypeError: 'dict_items' object is not subscriptable

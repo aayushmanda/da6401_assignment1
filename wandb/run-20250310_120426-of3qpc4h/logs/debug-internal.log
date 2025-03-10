@@ -1,0 +1,16 @@
+{"time":"2025-03-10T12:04:27.046784112Z","level":"INFO","msg":"stream: starting","core version":"0.19.6","symlink path":"/workspaces/da6401_assignment1/wandb/run-20250310_120426-of3qpc4h/logs/debug-core.log"}
+{"time":"2025-03-10T12:04:27.152001941Z","level":"INFO","msg":"created new stream","id":"of3qpc4h"}
+{"time":"2025-03-10T12:04:27.152045503Z","level":"INFO","msg":"stream: started","id":"of3qpc4h"}
+{"time":"2025-03-10T12:04:27.152111546Z","level":"INFO","msg":"writer: Do: started","stream_id":"of3qpc4h"}
+{"time":"2025-03-10T12:04:27.152213917Z","level":"INFO","msg":"handler: started","stream_id":"of3qpc4h"}
+{"time":"2025-03-10T12:04:27.152239404Z","level":"INFO","msg":"sender: started","stream_id":"of3qpc4h"}
+{"time":"2025-03-10T12:04:27.537360687Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-10T12:05:22.064550076Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-10T12:05:22.065016576Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-10T12:05:23.065177377Z","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading artifact run-of3qpc4h-conf_mat_train_table","runtime_seconds":1.596040569,"subtasks":[{"desc":"conf_mat_train_table.table.json","runtime_seconds":0.340718584,"progress":"3.4KB/3.4KB"}]},{"desc":"uploading artifact run-of3qpc4h-conf_mat_val_table","runtime_seconds":1.323022814,"subtasks":[{"desc":"conf_mat_val_table.table.json","runtime_seconds":0.10308288,"progress":"3.3KB/3.3KB"}]},{"desc":"uploading artifact run-of3qpc4h-conf_mat_test_table","runtime_seconds":1.004129421},{"desc":"uploading config.yaml","runtime_seconds":0.366380541,"progress":"4.4KB/4.4KB"}],"total_operations":4}}
+{"time":"2025-03-10T12:05:25.809176687Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-10T12:05:27.141472708Z","level":"INFO","msg":"stream: closing","id":"of3qpc4h"}
+{"time":"2025-03-10T12:05:27.141492826Z","level":"INFO","msg":"handler: closed","stream_id":"of3qpc4h"}
+{"time":"2025-03-10T12:05:27.14150602Z","level":"INFO","msg":"writer: Close: closed","stream_id":"of3qpc4h"}
+{"time":"2025-03-10T12:05:27.141576041Z","level":"INFO","msg":"sender: closed","stream_id":"of3qpc4h"}
+{"time":"2025-03-10T12:05:27.141588053Z","level":"INFO","msg":"stream: closed","id":"of3qpc4h"}
