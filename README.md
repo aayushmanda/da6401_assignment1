@@ -2,7 +2,7 @@
 
 - [Assignment Report](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/reports/DA6401-Assignment-1--VmlldzoxMTY5NzQ0Nw)
 
-- [Project Homepage]((https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/sweeps/diwa9zet?nw=nwuserda24s016))
+- [Project Homepage](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/sweeps/diwa9zet?nw=nwuserda24s016)
 
 
 ---
