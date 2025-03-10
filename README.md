@@ -46,9 +46,9 @@ The default values set in the file train.py are from hyperparameter tuning done 
 
 To run the file manually use the following command:
 ```sh
-# This will run the default values set in train.py
+@aayushmanda ➜ /workspaces/da6401_assignment1 (main) $ export WANDB_API_KEY=<KEY>
 
-$@aayushmanda ➜ /workspaces/da6401_assignment1 (main) $ python3 train.py -wp <wandb_project_name> -we <wandb_entity_name>
+@aayushmanda ➜ /workspaces/da6401_assignment1 (main) $ python3 train.py -wp <wandb_project_name> -we <wandb_entity_name>
 ```
 
 To run the file with custom values, check out the follwoing section.

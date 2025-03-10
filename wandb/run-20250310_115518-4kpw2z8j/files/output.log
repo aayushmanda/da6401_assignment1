@@ -1,0 +1,82 @@
+Done!
+10
+Activation used is Sigmoid
+-------x-------
+Epoch(1/10)	 Batch( 0/843): 	Train Loss  12.1525
+Epoch(1/10)	 Batch(200/843): 	Train Loss  5.1584
+Epoch(1/10)	 Batch(400/843): 	Train Loss  2.7887
+Epoch(1/10)	 Batch(600/843): 	Train Loss  2.2833
+Epoch(1/10)	 Batch(800/843): 	Train Loss  2.2323
+End of Epoch: 1 Train Accuracy: 0.2579 Validation Accuracy: 0.2597
+-------x-------
+Epoch(2/10)	 Batch( 0/843): 	Train Loss  2.2161
+Epoch(2/10)	 Batch(200/843): 	Train Loss  2.2046
+Epoch(2/10)	 Batch(400/843): 	Train Loss  2.1991
+Epoch(2/10)	 Batch(600/843): 	Train Loss  2.1891
+Epoch(2/10)	 Batch(800/843): 	Train Loss  2.1526
+End of Epoch: 2 Train Accuracy: 0.4556 Validation Accuracy: 0.4553
+-------x-------
+Epoch(3/10)	 Batch( 0/843): 	Train Loss  2.1429
+Epoch(3/10)	 Batch(200/843): 	Train Loss  2.1730
+Epoch(3/10)	 Batch(400/843): 	Train Loss  2.0919
+Epoch(3/10)	 Batch(600/843): 	Train Loss  2.0761
+Epoch(3/10)	 Batch(800/843): 	Train Loss  2.0917
+End of Epoch: 3 Train Accuracy: 0.5536 Validation Accuracy: 0.5593
+-------x-------
+Epoch(4/10)	 Batch( 0/843): 	Train Loss  2.0779
+Epoch(4/10)	 Batch(200/843): 	Train Loss  1.9639
+Epoch(4/10)	 Batch(400/843): 	Train Loss  2.0500
+Epoch(4/10)	 Batch(600/843): 	Train Loss  2.0081
+Epoch(4/10)	 Batch(800/843): 	Train Loss  1.9747
+End of Epoch: 4 Train Accuracy: 0.6055 Validation Accuracy: 0.6063
+-------x-------
+Epoch(5/10)	 Batch( 0/843): 	Train Loss  2.0098
+Epoch(5/10)	 Batch(200/843): 	Train Loss  1.9863
+Epoch(5/10)	 Batch(400/843): 	Train Loss  1.9563
+Epoch(5/10)	 Batch(600/843): 	Train Loss  1.9697
+Epoch(5/10)	 Batch(800/843): 	Train Loss  1.9411
+End of Epoch: 5 Train Accuracy: 0.6319 Validation Accuracy: 0.6308
+-------x-------
+Epoch(6/10)	 Batch( 0/843): 	Train Loss  2.0304
+Epoch(6/10)	 Batch(200/843): 	Train Loss  2.0223
+Epoch(6/10)	 Batch(400/843): 	Train Loss  1.9237
+Epoch(6/10)	 Batch(600/843): 	Train Loss  1.9181
+Epoch(6/10)	 Batch(800/843): 	Train Loss  1.9650
+End of Epoch: 6 Train Accuracy: 0.6544 Validation Accuracy: 0.6510
+-------x-------
+Epoch(7/10)	 Batch( 0/843): 	Train Loss  1.9543
+Epoch(7/10)	 Batch(200/843): 	Train Loss  1.8772
+Epoch(7/10)	 Batch(400/843): 	Train Loss  2.0024
+Epoch(7/10)	 Batch(600/843): 	Train Loss  1.9313
+Epoch(7/10)	 Batch(800/843): 	Train Loss  1.9274
+End of Epoch: 7 Train Accuracy: 0.6714 Validation Accuracy: 0.6682
+-------x-------
+Epoch(8/10)	 Batch( 0/843): 	Train Loss  1.9328
+Epoch(8/10)	 Batch(200/843): 	Train Loss  1.8695
+Epoch(8/10)	 Batch(400/843): 	Train Loss  1.9286
+Epoch(8/10)	 Batch(600/843): 	Train Loss  1.8394
+Epoch(8/10)	 Batch(800/843): 	Train Loss  1.8932
+End of Epoch: 8 Train Accuracy: 0.6872 Validation Accuracy: 0.6847
+-------x-------
+Epoch(9/10)	 Batch( 0/843): 	Train Loss  1.9258
+Epoch(9/10)	 Batch(200/843): 	Train Loss  1.9080
+Epoch(9/10)	 Batch(400/843): 	Train Loss  1.9181
+Epoch(9/10)	 Batch(600/843): 	Train Loss  1.9066
+Epoch(9/10)	 Batch(800/843): 	Train Loss  1.9189
+End of Epoch: 9 Train Accuracy: 0.6979 Validation Accuracy: 0.6933
+-------x-------
+Epoch(10/10)	 Batch( 0/843): 	Train Loss  1.8650
+Epoch(10/10)	 Batch(200/843): 	Train Loss  1.9376
+Epoch(10/10)	 Batch(400/843): 	Train Loss  1.9131
+Epoch(10/10)	 Batch(600/843): 	Train Loss  1.8770
+Epoch(10/10)	 Batch(800/843): 	Train Loss  1.8630
+End of Epoch: 10 Train Accuracy: 0.7076 Validation Accuracy: 0.7020
+/workspaces/da6401_assignment1/helper.py:72: RuntimeWarning: overflow encountered in exp
+  self.out = 1 / (1 + np.exp(-x))
+##################################
+Test Accuracy: 0.6766
+Traceback (most recent call last):
+  File "/workspaces/da6401_assignment1/train.py", line 213, in <module>
+    val_pred = np.argmax(model(X_val), axis=1)
+                               ^^^^^
+NameError: name 'X_val' is not defined. Did you mean: 'eval'?

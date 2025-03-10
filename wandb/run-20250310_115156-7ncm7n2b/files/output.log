@@ -1,0 +1,5 @@
+Done!
+usage: train.py [-h] -wp WANDB_PROJECT -we WANDB_ENTITY [-d DATASET] [-e EPOCHS] [-b BATCH_SIZE] [-l LOSS] [-o OPTIMIZER]
+                [-lr LEARNING_RATE] [-m MOMENTUM] [-beta BETA] [-beta1 BETA1] [-beta2 BETA2] [-eps EPSILON] [-w_d WEIGHT_DECAY]
+                [-w_i WEIGHT_INIT] [-nhl NUM_LAYERS] [-sz HIDDEN_SIZE] [-a ACTIVATION]
+train.py: error: the following arguments are required: -wp/--wandb_project, -we/--wandb_entity
