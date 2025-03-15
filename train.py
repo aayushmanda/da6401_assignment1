@@ -72,17 +72,6 @@ activation = args.activation
 init = args.weight_init.capitalize()
 batch_size=args.batch_size
 nepoch = args.epochs
-
-opt_parameter = {"lr": args.learning_rate,
-                 "optimizer": args.optimizer,
-                 "momentum": args.momentum,
-                 "epsilon": args.epsilon,
-                 "beta": args.beta,
-                 "beta1": args.beta1,
-                 "beta2": args.beta2,
-                 "decay": args.weight_decay}
-
-opt = Optimizer(**opt_parameter)
 loss_fn = args.loss
 Loss = CrossEntropyLoss() if loss_fn=="cross_entropy" else MSE()
 
@@ -145,6 +134,18 @@ elif activation == "sigmoid":
 else:
   raise Exception("Invalid activation function")
 
+
+opt_parameter = {"lr": args.learning_rate,
+                 "optimizer": args.optimizer,
+                 "momentum": args.momentum,
+                 "epsilon": args.epsilon,
+                 "beta": args.beta,
+                 "beta1": args.beta1,
+                 "beta2": args.beta2,
+                 "decay": args.weight_decay,
+                 "param": model.parameters()}
+
+opt = Optimizer(**opt_parameter)
 # -----------------------------------------------------------------------------------------------
 #Training Loop
 
