@@ -162,17 +162,21 @@ def train():
 
 # Sweep configuration
 sweep_config = {
-    "method": "grid",
-    "metric": {"goal": "maximize", "name": "val_accuracy"},
+    "method": "random",
+    "metric": {"goal": "maximize", "name": "Val Accuracy"},
     "parameters": {
-        "batch_size": {"values": [48, 64, 128]},
-        "hid_layers": {"values": [3, 5]},
+        "batch_size": {"values": [16, 32, 64]},
+        "decay": {"values": [0, 0.5, 0.0005]},
+        "hid_layers": {"values": [3, 4, 5]},
+        "hid_size": {"values": [32, 64, 128]},
         "nepoch": {"values": [5, 10]},
         "activation": {"values": ["relu", "tanh", "sigmoid"]},
         "init": {"values": ["Xavier", "Random"]},
-
+        "optimizer": {"values": ["sgd", "momentum", "rmsprop", "nag", "adam", "nadam"]},
+        "loss": {"values": ["mse", "cross_entropy"]},
+        "lr": {"values": [0.0001, 0.001]},
     },
 }
 sweep_id = wandb.sweep(sweep_config, project="da6401-assignment1")
-wandb.agent(sweep_id, function=train)
+wandb.agent(sweep_id, function=train, count = 5)
 wandb.finish()

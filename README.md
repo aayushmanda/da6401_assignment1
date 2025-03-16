@@ -2,7 +2,7 @@
 
 - [Assignment Report](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/reports/DA6401-Assignment-1--VmlldzoxMTY5NzQ0Nw)
 
-- [Sweep Homepage](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/sweeps/diwa9zet?nw=nwuserda24s016)
+- [Sweep Homepage](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-assignment1/sweeps/cd4pcsed?nw=nwuserda24s016)
 
 - [One of the Best Run. (with plots)](https://wandb.ai/da24s016-indian-institute-of-technology-madras/trail-1/runs/7l3h6m2q?nw=nwuserda24s016)
 
