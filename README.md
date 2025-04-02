@@ -1,6 +1,6 @@
 ## Assignemnt 1 --- DA6401: Introduction to Deep Learning
 
-- [Assignment Report](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/reports/DA6401-Assignment-1--VmlldzoxMTY5NzQ0Nw)
+- [Assignment Report](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-asg1/reports/DA6401-Assignment-1--VmlldzoxMTY5NzQ0Nw?accessToken=frrwayjr3twiyva72cxvbdc2ouszl2n38x0cimpd3b52pbl0il9z2ylu4aw9sltd)
 
 - [Sweep Homepage](https://wandb.ai/da24s016-indian-institute-of-technology-madras/da6401-assignment1/sweeps/cd4pcsed?nw=nwuserda24s016)
 
